@@ -1,0 +1,40 @@
+<div *ngIf="!isAuthenticated">
+  <div id="navcontainter">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <img src="assets/logo.png" width="33" height="33" alt="">
+      </a>
+      <a class="navbar-brand" >Employee Management System</a>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <button  class="btn btn-outline-dark"><a class="nav-link" href="#">Home Page</a></button>
+            
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  </div>
+  <div id="formcontainer">
+  <form [formGroup]="signInForm" (ngSubmit)="login()">
+    <h1 >Sign In</h1>
+    <div class="form-group">
+      <label for="loginID">LogIn ID:</label>
+      <input type="text" class="form-control" id="loginID" formControlName="loginID" placeholder="Enter your login ID" >
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password" >
+    </div>
+    <div class="button-container">
+    <button type="submit" class="btn btn-primary center">Sign In</button>
+  </div>
+  </form>
+</div>
+
+
+
+</div>

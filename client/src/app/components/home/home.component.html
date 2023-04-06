@@ -1,0 +1,83 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="collapse navbar-collapse container-fluid" id="navbarSupportedContent">
+      <a class="navbar-brand">
+        <img src="assets/logo.png" width="33" height="33" alt="">
+      </a>
+      <a class="navbar-brand">Employee Management System</a>
+      <ul class="navbar-nav ml-auto">
+        <div *ngIf="isAuthenticated == 'false'">
+          <li class="nav-item">
+            <button class="btn btn-outline-dark"><a href="login">Login</a></button>
+          </li>
+        </div>
+
+        <section *ngIf="isAuthenticated=='true' && role=='employee'">
+          <button class="btn btn-outline-dark"><a href="profile">Profile</a></button>
+          <button class="btn btn-outline-dark" (click)="logout()">Logout</button>
+        </section>
+
+        <section *ngIf="isAuthenticated=='true' && role=='admin'">
+          <button class="btn btn-outline-dark"><a href="admin">Profile</a></button>
+          <button class="btn btn-outline-dark" (click)="logout()">Logout</button>
+        </section>
+
+      </ul>
+    </div>
+  </nav>
+  <br><br>
+
+  <div  id="carouselExampleIndicators" class="carousel slide container" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>     
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div *ngIf="isAuthenticated=='false'">
+        <h1 ><strong>Welcome</strong>!</h1>
+        <h5>Our HR management website provides a range of services that enable you to efficiently and effectively manage your workforce's data. You can store, display, and update employee information using our user-friendly platform. Our services are designed to simplify the management of HR data, allowing you to focus on more important tasks related to your business.</h5>
+      </div>
+      <div *ngIf="isAuthenticated=='true'">
+        <h1 ><strong>Welcome to your account {{name}}</strong>!</h1>
+        
+      </div>
+      </div>
+      <div class="carousel-item container">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+          <thead>
+            <tr class="table-primary">
+              <th scope="col">Name</th>
+              <th scope="col">ID</th>
+              <th scope="col">Designation</th>
+              <th scope="col">Department</th>
+              <th scope="col">Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employees" scope="row">
+              <td>{{ employee.name }}</td>
+              <td>{{ employee.id }}</td>
+              <td>{{ employee.designation }}</td>
+              <td>{{ employee.department }}</td>
+              <td>{{ employee.phone }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>

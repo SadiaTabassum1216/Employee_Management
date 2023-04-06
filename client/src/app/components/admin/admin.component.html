@@ -1,0 +1,134 @@
+<div>
+   <div *ngIf="role == 'admin'" >
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <div class="collapse navbar-collapse container-fluid" id="navbarSupportedContent">
+            <a class="navbar-brand">
+               <img src="assets/logo.png" width="33" height="33" alt="">
+             </a>
+            <a class="navbar-brand">Employee Management System</a>
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <button class="btn btn-outline-dark" (click)="create=true" (click)="open(content)">Create
+                     Employee</button>
+               </li>
+               <li class="nav-item">
+                  <button class="btn btn-outline-dark" (click)="logout()">Logout</button>
+               </li>
+            </ul>
+         </div>
+      </nav>
+
+      <br><br>
+
+<div class="container"> 
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+         <thead>
+            <tr class="table-primary">
+               <th>Name</th>
+               <th>ID</th>
+               <th>Designation</th>
+               <th>Department</th>
+               <th>Phone</th>
+               <th>Salary</th>
+               <th>Update</th>
+               <th>Delete</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let employee of employees">
+               <td>{{ employee.name }}</td>
+               <td>{{ employee.id }}</td>
+               <td>{{ employee.designation }}</td>
+               <td>{{ employee.department }}</td>
+               <td>{{ employee.phone }}</td>
+               <td>{{ employee.salary }}</td>
+               <td><button class="btn btn-warning" (click)="selectEmployee(employee)" (click)="open(content2)">Update</button></td>
+               <td><button class="btn btn-danger" (click)="removeEmployee(employee)">Delete</button></td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+      <br><br><br><br><br>
+   </div>
+
+
+   <ng-template #content2 let-c="close" let-d="dismiss">
+      <div *ngIf="update">
+      <div class="modal-header">
+         <h4 class="modal-title" id="modal-basic-title">Update Employee</h4>
+         <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+         <p>ID: {{selectedEmployee.id}}</p>
+      <form>
+         <div class="form-group">
+            <label for="input1">Designation:</label>
+            <input type="text" class="form-control" id="input1" [(ngModel)]="selectedEmployee.designation" name="var1">
+         </div>
+         <div class="form-group">
+            <label for="input2">Department:</label>
+            <input type="text" class="form-control" id="input2" [(ngModel)]="selectedEmployee.department" name="var2">
+         </div>
+         <div class="form-group">
+            <label for="input3">Salary</label>
+            <input type="text" class="form-control" id="input3" [(ngModel)]="selectedEmployee.salary" name="var3">
+         </div>
+         <button class="btn btn-primary" (click)="updatedEmployee()" (click)="c('Save click')">Update</button>
+      </form>
+      </div>
+   </div>
+   </ng-template>
+
+
+   <ng-template #content let-c="close" let-d="dismiss">
+      <div *ngIf="create">
+         <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Create new employee</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+         </div>
+         <div class="modal-body">
+            <form>
+               <div class="form-group">
+                  <label for="input4">ID:</label>
+                  <input type="text" id="input4" [(ngModel)]="newEmployee.id" name="var4" class="form-control"><br>
+               </div>
+      
+               <div class="form-group">
+                  <label for="input6">Name</label>
+                  <input type="text" id="input6" [(ngModel)]="newEmployee.name" name="var6" class="form-control"><br>
+               </div>
+      
+               <div class="form-group">
+                  <label for="input1">Designation:</label>
+                  <input type="text" id="input1" [(ngModel)]="newEmployee.designation" name="var1" class="form-control"><br>
+               </div>
+      
+               <div class="form-group">
+                  <label for="input2">Department:</label>
+                  <input type="text" id="input2" [(ngModel)]="newEmployee.department" name="var2" class="form-control"><br>
+               </div>
+      
+               <div class="form-group">
+                  <label for="input3">Salary</label>
+                  <input type="text" id="input3" [(ngModel)]="newEmployee.salary" name="var3" class="form-control"><br>
+               </div>
+      
+               <div class="form-group">
+                  <label for="input5">Password</label>
+                  <input type="password" id="input5" [(ngModel)]="newEmployee.password" name="var5" class="form-control"><br>
+               </div>
+               <button (click)="createEmployee()" class="btn btn-primary" (click)="c('Save click')">Create</button>
+      
+            </form>
+         </div>
+         
+      </div>
+   </ng-template>
+
+
+
+   <div *ngIf="role != 'admin'" class="centered">
+      <H1><strong> Access Denied!</strong></H1>
+      <br>
+      <button class="btn btn-outline-dark"><a href="home">Home</a></button>
+   </div>

@@ -1,0 +1,137 @@
+<div *ngIf="role == 'employee'">
+  <div id="navcontainter">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="assets/logo.png" width="33" height="33" alt="">
+        </a>
+        <a class="navbar-brand" >Employee Management System</a>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <button  class="btn btn-outline-dark"><a  href="#">Home Page</a></button>
+            </li>
+            <li class="nav-item">
+
+              <Button class="btn btn-outline-dark" (click)="changeInfo()" (click)="open(updateinfoModal)">Change
+                Info</Button>
+            </li>
+            <li class="nav-item">
+              <Button class="btn btn-outline-dark" (click)="open(updatePasswordModal)" (click)="changePassword()">Change
+                Password</Button>
+            </li>
+            <li class="nav-item">
+              <Button class="btn btn-outline-dark" (click)="logout()">Logout</Button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <ng-template #updatePasswordModal  let-c="close" let-d="dismiss">
+      <div class="modal-header border-0">
+        <h3>Update Password</h3>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="updatePassword">
+          <form action="#" class="row">
+            <div class="col-12">
+              <label for="input3">Password:</label>
+              <input type="password" class="form-control mb-3" id="input3" [(ngModel)]="selectedEmployee.password"
+                name="var3" placeholder="password">
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" (click)="updatePassword()">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #updateinfoModal  let-c="close" let-d="dismiss">
+      <div class="modal-header border-0">
+        <h3>Update information</h3>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="updateInfo">
+          <form action="#" class="row">
+            <div class="col-12">
+              <label for="input4">Phone Number:</label>
+              <input type="text" class="form-control mb-3" id="input4" [(ngModel)]="selectedEmployee.phone" name="var4"
+                placeholder="Phone">
+            </div>
+            <div class="col-12">
+              <label for="input6">Email:</label>
+              <input type="text" class="form-control mb-3" id="input6" [(ngModel)]="selectedEmployee.email" name="var6"
+                placeholder="Email">
+            </div>
+            <div class="col-12">
+              <label for="input3">Address:</label>
+              <input type="text" class="form-control mb-3" id="input1" [(ngModel)]="selectedEmployee.address"
+                name="var1" placeholder="Address">
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" (click)="updateInfo()">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    </ng-template>
+  </div>
+  <div id="cardcontainer text-center" class="text-center m-5 p-4">
+    <div class="container ">
+      <div class="card ">
+        <div class="card-header bg-primary text-white">
+          <h3>Profile Information</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><strong>ID:</strong> {{selectedEmployee.id}}</p>
+          <p class="card-text"><strong>Name:</strong> {{selectedEmployee.name}}</p>
+          <p class="card-text"><strong>Designation:</strong> {{selectedEmployee.designation}}</p>
+          <p class="card-text"><strong>Department:</strong> {{selectedEmployee.department}}</p>
+          <p class="card-text"><strong>Salary:</strong> {{selectedEmployee.salary}}</p>
+          <p class="card-text"><strong>Phone:</strong> {{selectedEmployee.phone}}</p>
+          <p class="card-text"><strong>Email:</strong> {{selectedEmployee.email}}</p>
+          <p class="card-text"><strong>Address:</strong> {{selectedEmployee.address}}</p>
+          <br><br><br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="role != 'employee'">
+  <div id="navcontainter">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Employee Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+      </div>
+    </nav>
+  </div>
+  
+  <div id="no">
+    <div class="fade-in">
+      <h1>Needs Employee permission</h1>
+    </div>
+
+
+    <div id="buttonhome">
+      <button class="btn btn-primary mt-3 "><a href="home" class="text-white">Home</a></button>
+    </div>
+  </div>
+</div>

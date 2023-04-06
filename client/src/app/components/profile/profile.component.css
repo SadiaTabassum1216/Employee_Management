@@ -1,0 +1,44 @@
+
+.navbar {
+    height: 80px;
+    
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    color:white;
+}
+.navbar-brand:hover{
+    background-color: black;
+}
+.container{
+    width:70%;
+   
+}
+#no{
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+
+}
+#buttonhome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-text{
+    font-size:20px;
+    
+}
+.card-body{
+    background-color:rgb(244, 244, 233);
+}
+
+.btn.btn-primary {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
